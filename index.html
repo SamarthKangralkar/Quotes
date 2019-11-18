@@ -1,0 +1,238 @@
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Task of Quotes</title>
+
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+ 
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+
+  <link href="css/agency.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.12.1/vue.min.js"></script>
+    <script src= 
+
+"https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"> 
+
+    </script> 
+
+      
+
+    <script src= 
+
+"https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.12.1/vue.min.js"></script>
+    </script>
+</head>
+
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Quotes</a>
+      
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container">
+      <div class="intro-text">
+      <center>
+       <h1>Quotes</h1>
+  
+<h2><p><em>{{ msgs[currentMsg].msg }}</em></p></h2>
+</center>
+        <button class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" v-on="click: prev">Previous</button>
+       &nbsp;&nbsp;
+       <button class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" v-on="click: next">Next</button>
+
+
+      
+
+<body id="app">
+ 
+ 
+
+    <center> 
+
+    
+
+      
+
+    <div id="html-content-holder" style="background-color:##959596;  
+
+                color: #f20000; width: 500px;padding-left: 25px;  
+
+                padding-top: 10px;"> 
+
+          
+
+      
+
+          
+
+        <hr/> 
+
+          
+
+       
+      
+
+        <p style="color: #959596;">  
+
+            <h3><p><em>{{ msgs[currentMsg].msg }}</em></p></div></h3>
+        </p> 
+
+      
+
+        
+
+    
+
+  
+
+     
+       <button class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" id="btn-Preview-Image">Preview</button>
+&nbsp;&nbsp;
+          
+
+    <a id="btn-Convert-Html2Image" href="#"> 
+
+        Download 
+
+    </a> 
+
+  
+
+    <br/> 
+
+      
+&nbsp;&nbsp;
+    <h3>Please first preview and download</h3> 
+
+      
+
+    <div id="previewImage"></div> 
+    </div> 
+</div>
+    </div>
+  </header>  
+
+    <script> 
+
+        $(document).ready(function() { 
+
+          
+
+            // Global variable 
+
+            var element = $("#html-content-holder");  
+
+          
+
+            // Global variable 
+
+            var getCanvas;  
+
+  
+
+            $("#btn-Preview-Image").on('click', function() { 
+
+                html2canvas(element, { 
+
+                    onrendered: function(canvas) { 
+
+                        $("#previewImage").append(canvas); 
+
+                        getCanvas = canvas; 
+
+                    } 
+
+                }); 
+
+            }); 
+
+  
+
+            $("#btn-Convert-Html2Image").on('click', function() { 
+
+                var imgageData =  
+
+                    getCanvas.toDataURL("image/png"); 
+
+              
+
+                // Now browser starts downloading  
+
+                // it instead of just showing it 
+
+                var newData = imgageData.replace( 
+
+                /^data:image\/png/, "data:application/octet-stream"); 
+
+              
+
+                $("#btn-Convert-Html2Image").attr( 
+
+                "download", "Quotes.png").attr( 
+
+                "href", newData); 
+
+            }); 
+
+        }); 
+
+        new Vue({
+    
+    el: "#app",
+    
+    data: {
+        msgs: [
+            {msg:"That's one small step for a man, one giant leap for mankind - Neil Armstrong" }, 
+            {msg: "The Universe is under no obligation to make sense to you - Neil deGrasse Tyson"},
+            {msg: "I would like to die on Mars. Just not on impact - Elon Musk"},
+            {msg: "If we can conquer space, we can conquer childhood hunger - Buzz Aldrin"},
+            {msg: "The eternal silence of these infinite spaces frightens me - Blaise Pascal"},
+        ],
+       currentMsg: 0
+    },
+            
+    methods: {
+        next: function() {
+            if (this.currentMsg+1 < this.msgs.length) {
+                this.currentMsg++;
+            }
+        },
+        prev(){
+          this.currentMsg--;
+        }
+        
+
+    },
+            
+    
+});
+
+
+    </script> 
+
+    </center> 
+
+</body> 
+
+  
+
+</html>  
